@@ -1,16 +1,17 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
   font-size: 62.5%;
 }
 
-#body {
-  /* A '#' representa que é um seletor de id */
+body {
   height: 100vh;
   color: white;
+  background: #EbF2F5;
 }
 
 body,
