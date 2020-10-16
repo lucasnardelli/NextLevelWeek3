@@ -30,3 +30,58 @@ map.on('click', (event) => {
 
     marker = L.marker([lat, lng], { icon }).addTo(map);
 })
+
+// select photos
+
+// add field photos
+
+function addPhotoField () {
+    // pegar o container de fotos #images
+    const container = document.querySelector('#images')
+    // pegar o container para duplicar .new-image
+    const fieldContainer = document.querySelectorAll('.new-upload')
+    //realizar o clone da ultima imagem adicionada
+    const newFielContainer = fieldContainer[fieldContainer.length - 1].cloneNode(true)
+    //verificar se o campo esta vazio, se sim não adiconar ao container
+    const input = newFielContainer.children[0]
+
+    if(input.value == "") {
+        return 
+    }
+    //limpar o campo
+    input.value = ""
+    //adicionar o clone ao container de #imagem
+    container.appendChild(newFielContainer)
+}
+
+function deleteField (event) {
+    const span = event.currentTarget
+    
+    const fieldContainer = document.querySelectorAll('.new-upload')
+
+    if(fieldContainer.length <= 1) {
+        //limpar valor do campo
+        span.parentNode.children[0].value = ""
+        return
+    }
+
+    //deletar o campo
+    span.parentNode.remove()
+}
+
+//seleção do sim e não
+
+function toggleSelect (event) {
+    // retirar a class .active doa botoes
+    document.querySelectorAll('.button-select button')
+    .forEach(button => button.classList.remove('active'))
+    //colocar a class .active nesse botao
+    const button = event.currentTarget
+    button.classList.add('active')
+    // pegar o botão clicado
+
+    // atualizar o meu input hidden com o valor selecionado
+    const input = document.querySelector('[name="open_on_weekends"]')
+    // verificar se sim ou não
+    input.value = button.dataset.value
+}
